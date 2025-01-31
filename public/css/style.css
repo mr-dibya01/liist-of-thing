@@ -1,0 +1,174 @@
+
+body {
+    font-family: "Plus Jakarta Sans", serif !important;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.container {
+    flex: 1;
+}
+/* Navbar */
+.fa-compass {
+    color: #fe424d;
+    font-size: 1.8rem;
+}
+.nav-link {
+    color: #222222 !important;
+}
+.navbar {
+    height: 5rem;
+    background-color: white;
+}
+
+/* Footer */
+.fa-square-facebook{
+    color: 	#226ac8;
+}
+.fa-square-facebook:hover{
+    color: 	#1877F2;
+}
+.fa-square-instagram{
+    color: rgb(192, 30, 103);
+}
+.fa-square-instagram:hover{
+    opacity: 0.9;
+}
+.fa-linkedin{
+    color: #106a9a;
+}
+.fa-linkedin:hover{
+    color: #0077B5;
+}
+.footer-links a{
+    text-decoration: none;
+    color: #222222;
+}
+.footer-links a:hover{
+    text-decoration: underline;
+}
+.f-social {
+    width: 100%;
+}
+.footer-links {
+    width: 100%;
+}
+.fa-brands {
+    font-size: 1.8rem;
+}
+.f-info {
+    padding: 0.5rem;
+    display: flex;
+    background-color: #edebeb;
+    height: 8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    align-items: center;
+}
+.navbar-nav-search-btn {
+    background-color: #fe424d;
+    color: white;
+    border-radius: 2rem;
+}
+
+.navbar-nav-search-btn:hover {
+    background-color: #ff0011;
+    color: white;
+}
+.navbar-nav-search-bar{
+    width: 30rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+}
+.ms-auto{
+    display: flex;
+}
+.fa-magnifying-glass{
+    display: inline;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+
+/* Cards */
+.card {
+    margin-bottom: 1rem !important;
+    border: none;
+}
+.card-img-top{
+    width: 100% !important;
+    border-radius: 1rem !important;
+    object-fit: cover !important;
+}
+.card-text {
+    font-weight: 400 !important;
+}
+.listing-link{
+    text-decoration: none;
+}
+/* card effect */
+.card-img-overlay{
+    opacity: 0 ;
+}
+.card-img-overlay:hover{
+    opacity: 0.3 ;
+    background-color: white;
+}
+
+
+/* new page */
+.addform{
+    border: none;
+    background-color: #fe424d !important;
+    color: white;
+}
+/* Edit Page */
+.edit-btn {
+    background-color: #e33540 !important;
+    color: white;
+}
+.prev-img img{
+    height: 8rem;
+    width: 15rem;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* dettails page */
+.indi-image{
+    /* width: 100% !important; */
+    height: 35vh !important;
+    background-image: cover;
+}
+.btns {
+    display: flex;
+}
+.heading {
+    margin: 0 0.5rem;
+}
+.card-cont {
+    padding-left:0 ;
+}
+
+/* alerts */
+/* .alert{
+    background-color: rgb(224, 117, 117);
+} */
+
+/* review */
+
+.reviewcard {
+    border: 1px solid rgba(35, 32, 32, 0.076);
+}
+.card-header{
+    color: white;
+    background-color:  #272323a5;
+}
+.card-body{
+    display: flex;
+    justify-content: space-between;
+}
+/* .reviewDltBtn {
+        background-color: rgba(255, 7, 7, 0.454);
+} */

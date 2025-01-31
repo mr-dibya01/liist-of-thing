@@ -1,0 +1,143 @@
+<% layout("layout/boilerplate") %>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+    #map {
+        height: 400px; /* Map height */
+        width: 100%;   /* Map width */
+        margin-top: 20px;
+    }
+</style>
+<body>
+    <!-- individualListing
+    <img src="" alt="view of listing"> -->
+    <div class="row heading">
+        <div class="col-8 offset-3">
+            <h3 ><%= Listing.title %></h3>
+        </div>
+        <div class="row">
+            <div class="card col-6 offset-3" >
+                <img src="<%= Listing.image.url %>" class="card-img-top indi-image" alt="Listing image">
+                <div class="card-body card-cont">
+                    <p>
+                        price : <b>&#8377;<%= Listing.price.toLocaleString("en-IN") %></b> <br>
+                        <i>Owned by : <b><%= Listing.owner.username %>.</b></i><br>
+                        description <b>:</b> <i><%= Listing.description %></i><br>
+                        location <b>:</b> <%= Listing.location %><br>
+                        country <b>:</b> <%= Listing.country %></b>
+                    </p>
+                </div>
+          </div>
+        </div>
+        
+        
+       
+    </div>
+    <% if(currUser && currUser._id.equals(Listing.owner._id)){%>
+        <div class="btns">
+            <a href="/Listings/<%= Listing._id %>/edit" class="btn edit-btn col-1 offset-3">Edit</a>
+            <form method="post" onsubmit="confirmDelete(event)"  action="/Listings/<%= Listing._id %>?_method=DELETE">
+            <button class="btn  btn-dark offset-5">delete</button>
+            </form>
+        </div>
+    <% } %>
+
+    <div class="col-8 offset-3 mb-3">
+        <% if(currUser){%>
+        <h3>Leave a Review</h3>
+        <form method="post" action="/listings/<%= Listing._id %>/reviews" novalidate class="needs-validation">
+            <div class="mb-3 mt-3">
+                <label for="rating form-label">Rating</label>
+                 <!-- <input type="range" min="1" max="5" id="rating" name="rating" class="form-range" >review[rating] -->
+                 <fieldset class="starability-slot">
+                    <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+                    <input type="radio" id="first-rate1" name="rating" value="1" />
+                    <label for="first-rate1" title="Terrible">1 star</label>
+                    <input type="radio" id="first-rate2" name="rating" value="2" />
+                    <label for="first-rate2" title="Not good">2 stars</label>
+                    <input type="radio" id="first-rate3" name="rating" value="3" />
+                    <label for="first-rate3" title="Average">3 stars</label>
+                    <input type="radio" id="first-rate4" name="rating" value="4" />
+                    <label for="first-rate4" title="Very good">4 stars</label>
+                    <input type="radio" id="first-rate5" name="rating" value="5" />
+                    <label for="first-rate5" title="Amazing">5 stars</label>
+                  </fieldset>
+            </div>
+            <div>
+                <label for="comment" class="form-label">Comments</label>
+                <textarea required name="content" class="form-control" id="comment" cols="30" rows="5" ></textarea>
+                <div class="invalid-feedback">
+                    Please submit some comment for review
+                </div>
+            </div>
+            <button class="btn btn-outline-dark mt-2 mb-3">Submit</button>
+        </form>
+        <% } %>
+        <hr>
+
+        <%if(Listing.reviews.length > 0){%>
+        <h2>All Reviews</h2>
+        <% for(let review of Listing.reviews){%>
+            <div class="card reviewcard">
+                <div class="card-header ">
+                   <b><i>@<%= review.author.username %></i> </b>
+                </div>
+                <div class="card-body">
+                    <div>
+                        <p class="starability-result" data-rating="<%= review.rating %>">
+                           Rated: 3 stars
+                        </p>
+                        <!-- <p class="card-title"><b>&#9733</b></p  -->
+                        <p class="card-text"><%= review.content %></p>
+                    </div>
+                   <div>
+                        <form onsubmit="confirmDelete(event)" action="/listings/<%= Listing._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
+                            <button class="btn btn-sm btn-dark">remove</button>
+                        </form> 
+                    </div>
+                </div>
+          </div>
+           <% } %>
+        <% } %>
+    </div>
+    <div class="col-6 offset-3 mb-3">
+        <h3>Where you will be</h3>
+        <div id="map"></div>
+    </div>
+
+</body> 
+
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([18.7387, 73.4649], 15); // Coordinates: Example for Pawna Lake
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add a circular area
+        var circle = L.circle([18.7387, 73.4649], { // Center coordinates
+            color: 'red',      // Border color
+            fillColor: '#f03', // Fill color
+            fillOpacity: 0.3,  // Fill transparency
+            radius: 500        // Radius in meters
+        }).addTo(map);
+
+
+    //     var polygon = L.polygon([
+    //     [51.509, -0.08],
+    //     [51.503, -0.06],
+    //     [51.51, -0.047]
+    // ]).addTo(map);
+
+    // Add a popup to the polygon
+    polygon.bindPopup("I am a polygon.");
+
+        // Add a marker
+        var marker = L.marker([18.7387, 73.4649]).addTo(map)
+            .bindPopup('<b>This is your location!</b>') // Popup text
+            .openPopup();
+    </script>

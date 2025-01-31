@@ -1,0 +1,101 @@
+<% layout("layout/boilerplate.ejs") %>
+<style>
+   /* #category {
+      height: 2.1rem;
+      margin-top: 0.6rem;
+      width: 100%;
+      border-radius: 5px;
+      
+   } */
+   /* select:focus {
+    outline: none; 
+    border: 5px solid #1f73e966;  
+    box-shadow: none; 
+   } */ /* Removes the black border *//* Optional: Light border for better UI *//* Removes extra shadow on some browsers */
+</style>
+
+<body>
+    <div class=" row">
+        <div class="col-8 offset-2">
+            <br>
+            <h3>Create a New Listing</h3>
+            <br>
+        <form method="post" class="needs-validation" enctype="multipart/form-data" novalidate action="/listings">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title:</label>
+                <input type="text" class="form-control" required  id="title" name="title" placeholder="enter spicy title">
+                <div class="invalid-feedback">
+                    title must be required.
+                  </div>
+                  <div class="valid-feedback">
+                    valid title.
+                  </div>
+            </div>
+            <div class="mb-3"   >
+                <label for="description" class="form-label">Description:</label>
+                <textarea id="description" class="form-control" required name="description"></textarea>
+                <div class="invalid-feedback">
+                    description must be required.
+                </div>
+                <div class="valid-feedback">
+                    valid description.
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location:</label>
+                <input type="text" name="location" required id="location" class="form-control" placeholder="enter your location">
+                <div class="invalid-feedback">
+                    location must be required.
+                </div>
+                <div class="valid-feedback">
+                    valid location.
+                </div>
+            </div>
+            <div class="row">
+                <div class="mb-3 col-5">
+                    <label for="price" class="form-label">Price:</label>
+                    <input id="price" class="form-control" required name="price" placeholder="enter your price">
+                    <div class="invalid-feedback">
+                       price should be required.
+                    </div>
+                    <div class="valid-feedback">
+                        Ok.
+                    </div>
+                </div>
+                <div class="mb-3 col-7">
+                    <label for="country" class="form-label">Country:</label>
+                    <input type="text" id="country" name="country" class="form-control" required placeholder="Enter Your Country">
+                    <div class="invalid-feedback">
+                        country name must be required.
+                    </div>
+                    <div class="valid-feedback">
+                        valid country.
+                    </div>
+                </div>
+                <!-- <div class=" form-check mb-3 col-7">
+                    
+                    <input class="form-check-input" required id="condition" type="checkbox"><label for="condition">Terms and condition</label>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="mb-3 col-8">
+                    <label for="image" class="form-label">Upload Listing Image:</label>
+                    <input  id="image" type="file" name="image" class="form-control" >
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="category">Category:</label><br>
+                    <select name="category" class="form-select mt-2" id="category"> 
+                       <option selected>Choose a Category</option>
+                       <% categories.forEach(category => { %>
+                        <option  value="<%= category %>"><%= category %></option>
+                       <% }) %>
+                    </select>
+                        
+                </div>
+            </div>
+            <button class="btn addform">Add</button>
+        </form> 
+       </div>       
+    </div>
+
+</body>
