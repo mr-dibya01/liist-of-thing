@@ -8,7 +8,7 @@ const multer  = require('multer');
 const { storage }= require("../cloudconfig.js");
 const upload = multer({ storage });
 
-router.get("/" ,isLoggedIn ,listingController.index);
+router.get("/" ,wrapasync(listingController.index));
 
 router.route("/")
    .post(isLoggedIn ,

@@ -16,6 +16,7 @@ const passport=require("passport");
 const LocalStrategy=require("passport-local"); 
 const User=require("./models/user.js");
 const dbUrl=process.env.ATLASDB_URL;
+const listingController=require("./controller/listing.js");
 
 const listingRoute=require("./route/listing.js");
 const reviewRoute=require("./route/review.js");
@@ -58,8 +59,8 @@ const sessionoptions ={
 };
 
 
-const { valid } = require("joi");
 const user = require("./models/user.js");
+const wrapasync = require('./utils/wrapAsync.js');
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
 app.engine('ejs', ejsmate);
@@ -98,6 +99,7 @@ app.use((req,res,next)=>{
     next(); 
 })
 
+app.use("/",wrapasync(listingController.index));
 
 app.use("/listings",listingRoute);
 app.use("/listings/:id/reviews",reviewRoute);
