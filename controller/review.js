@@ -2,7 +2,7 @@ const { listing }=require("../models/listing");
 const Review=require("../models/review.js");
 
 
-module.exports.createReview=async (req,res)=>{
+module.exports.createReview=async (req ,res)=>{
     console.log(req.params.id);
     let Listing=await listing.findById(req.params.id);
     let newreview=new Review( req.body );

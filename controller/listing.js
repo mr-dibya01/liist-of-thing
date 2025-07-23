@@ -38,6 +38,7 @@ module.exports.showListing=async (req,res)=>{
         },
     })
     .populate("owner"); 
+    console.log(Listing);
     if(!Listing){
         req.flash("remove","Listing you requested for does not exist!");
         res.redirect("/listings");

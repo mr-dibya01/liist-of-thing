@@ -32,7 +32,7 @@ module.exports.isOwner=async (req,res,next)=>{
 };
 
 module.exports.isReviewAuthor=async (req,res,next)=>{
-    let { id,reviewId }=req.params;
+    let { id,reviewId }=req.params; 
     let Review=await review.findById(reviewId);
     console.log(req.user._id);       
    if(!Review.author._id.equals(req.user._id)){
@@ -45,6 +45,7 @@ module.exports.isReviewAuthor=async (req,res,next)=>{
 
 module.exports.validationlisting=(req,res,next)=>{
     let  result =listingSchema.validate(req.body);
+    console.log("validationlisting",result,"-------");
     if(result.error){
         next(new expressError(400,  result.error.message )); 
     }else{

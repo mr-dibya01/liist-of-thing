@@ -16,7 +16,7 @@ module.exports.createNewUser=async (req,res,next)=>{
    req.flash("success","Welcome to Wanderlust");
    res.redirect("/listings");
    });
- }catch(e){
+ } catch(e) {
     req.flash("error",e.message);
     res.redirect("/signup");
  }

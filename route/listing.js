@@ -8,12 +8,12 @@ const multer  = require('multer');
 const { storage }= require("../cloudconfig.js");
 const upload = multer({ storage });
 
+router.get("/" ,isLoggedIn ,listingController.index);
 
-router
-   .route("/")
-   .get(wrapasync(listingController.index))
+router.route("/")
    .post(isLoggedIn ,
       upload.single('image') ,
+      validationlisting,
       wrapasync(listingController.createListing )
    );
    

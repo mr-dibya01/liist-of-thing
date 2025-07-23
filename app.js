@@ -7,11 +7,11 @@ const app=express();
 const mongoose=require("mongoose");
 const methodOverride=require("method-override");
 const path=require("path");
-const expressError=require("./utils/expressError");
-const ejsmate=require("ejs-mate");
+const expressError=require("./utils/expressError"); 
+const ejsmate=require("ejs-mate");   
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const flash = require('connect-flash');
+const flash = require('connect-flash');  
 const passport=require("passport");
 const LocalStrategy=require("passport-local"); 
 const User=require("./models/user.js");
@@ -27,7 +27,7 @@ main()
 })
 .catch((err)=>{
     console.log(err);
-});
+}); 
 
 async function main() {
     await mongoose.connect(dbUrl);
@@ -64,7 +64,7 @@ app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
 app.engine('ejs', ejsmate);
 app.use(express.static(path.join(__dirname,"/public")));
-app.use(express.urlencoded({extended:true}));
+app.use(express.urlencoded({extended:true}));    
 app.use(methodOverride('_method'));
 
 app.use(session( sessionoptions  ));
@@ -93,10 +93,15 @@ app.use((req,res,next)=>{
    next();
 });
 
+app.use((req,res,next)=>{
+    console.log(req.originalUrl);
+    next(); 
+})
+
 
 app.use("/listings",listingRoute);
 app.use("/listings/:id/reviews",reviewRoute);
-app.use("/",userRoute);
+app.use("/",userRoute); 
 
 //  Invalid Route
 app.all("*",(req,res,next)=>{ 
@@ -104,7 +109,9 @@ app.all("*",(req,res,next)=>{
 });
 
 app.use((err,req,res,next)=>{
+    console.log("Error Haldseler",err,"-------");
     let { status=403,message="Went Something Error!" }=err;
+    console.log("sstatys=s",status,message);
     res.status(status).render("error.ejs", {message});
 });
 
