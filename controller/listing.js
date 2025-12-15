@@ -2,6 +2,7 @@ const {listing}=require("../models/listing");
 const {categoryEnum}=require("../models/listing");
 
 module.exports.index=async (req,res)=>{
+    console.log(listing);
    let allListings=await listing.find({});  
    res.render("listing/index.ejs",{ allListings });
 };
@@ -67,7 +68,7 @@ module.exports.updateListing=async (req,res)=>{
         result.image={url:req.file.path,filename:req.file.filename};
         await result.save();
     }
-    req.flash("success","listing updated");
+    req.flash("success","listing updated"); 
     res.redirect(`/listings/${id}`); 
 };
 

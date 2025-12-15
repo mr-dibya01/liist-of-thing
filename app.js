@@ -59,7 +59,6 @@ const sessionoptions ={
 };
 
 
-const user = require("./models/user.js");
 const wrapasync = require('./utils/wrapAsync.js');
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
